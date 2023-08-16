@@ -21,6 +21,8 @@ def get_args():
                         '--sorted',
                         action='store_true',
                         help='Sort the items')
+    
+    
 
     return parser.parse_args()
 

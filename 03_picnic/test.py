@@ -66,3 +66,28 @@ def test_more_than_two_sorted():
     out = getoutput(f'{prg} {arg} --sorted')
     expected = ('You are bringing apples, bananas, cherries, and dates.')
     assert out.strip() == expected
+
+
+
+
+# --------------------------------------------------
+def test_more_than_two_MINE():
+    """more than two items"""
+
+    arg = '"potato chips" coleslaw cupcakes "French silk pie"'
+    out = getoutput(f'{prg} {arg} --no_oxford')
+    expected = ('You are bringing potato chips, coleslaw, '
+                'cupcakes and French silk pie.')
+    assert out.strip() == expected
+
+# --------------------------------------------------
+def test_more_than_two_MINE_special_character():
+    """more than two items"""
+    arg = 'bananas apples dates cherries'
+    for val in ["';'", "'-'", "'#'"]:
+        for option in ['-c', '--character']:
+            out = getoutput(f'{prg} {arg} {option} {val}')
+            expected = (f'You are bringing bananas{val[1]} apples{val[1]} dates{val[1]} and cherries.')
+            assert out.strip() == expected
+
+
